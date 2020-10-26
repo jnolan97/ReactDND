@@ -28,14 +28,13 @@ const TaskList = styled.div`
     
 `;
 
-export default class Column extends React.Component {
-    render() {
+export default function Column(props) {
         return (
             <Container>
                 <Title>
-                    {this.props.column.title}
+                    {props.column.title}
                 </Title>
-                <Droppable droppableId={this.props.column.id}>
+                <Droppable droppableId={props.column.id}>
                 {(provided,snapshot) => (
 
                
@@ -46,7 +45,7 @@ export default class Column extends React.Component {
                 style={{backgroundColor: snapshot.isDraggingOver ? 'lightgreen': 'white'}}
                 >
                     <div className='tasks'>
-                    {this.props.tasks.map((task,index) => <Task key={task.id} task={task} index={index} />)}
+                    {props.tasks.map((task,index) => <Task key={task.id} task={task} index={index} />)}
                     {provided.placeholder}
                     </div>
                 </TaskList>
@@ -56,4 +55,3 @@ export default class Column extends React.Component {
             </Container>
         );
     }
-}
